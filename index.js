@@ -39,7 +39,7 @@ async function run() {
     const orgsComments = await orgActivity.getOrgsValid(organization);
     console.log(orgsComments)
     if(orgsComments.status !== 'error') {
-      const userActivity = await orgActivity.getUserActivity(organization);
+      jsonfinallist = await orgActivity.getUserActivity(organization);
       
     }
   }
@@ -47,38 +47,23 @@ async function run() {
   // console.log('******output*******')
   // console.log(removeMulUserList);
   console.log('******final*******')
-  // console.log(jsonfinallist);
+  console.log(jsonfinallist);
   
   
   //***end test */
 
   console.log(`User activity data captured, generating inactive user report... `);
-  saveIntermediateData(outputDir, removeMulUserList);
 
  
   const totalInactive = jsonfinallist.length;
-  console.log(`rmvconfrm - ${rmvconfrm} & totalInactive - ${totalInactive}`)
 
-  core.setOutput('rmuserjson', removeMulUserList);
+  core.setOutput('jsonfinallist', jsonfinallist);
   core.setOutput('usercount', totalInactive);
-  if(rmvconfrm === totalInactive){
+  if(totalInactive === totalInactive){
     core.setOutput('message', 'Success');
   }else{
     core.setOutput('message', 'Failure');
   }
-
-  // Convert the JavaScript objects into a JSON payload so it can be output
-  // console.log(`User activity data captured, generating inactive user report... `);
-  // const data = userActivity.map(activity => activity.jsonPayload)
-  //   , csv = json2csv.parse(data, {})
-  // ;
-
-  // const file = path.join(outputDir, 'organization_user_activity.csv');
-  // fs.writeFileSync(file, csv);
-  // console.log(`User Activity Report Generated: ${file}`);
-
-  // Expose the output csv file
-  // core.setOutput('report_csv', file);
 }
 
 async function execute() {
@@ -95,30 +80,7 @@ function getRequiredInput(name) {
   return core.getInput(name, {required: true});
 }
 
-async function removeMultipleUser(orgActivity, orgsname, removeduserarr, removeFlag){
-  let rmvlen = 0;
-  if(removeFlag.toLowerCase() === 'yes'){
-    console.log(`**** Attempting to remove inactive user lists from - ${orgsname}. Count of ${removeduserarr.length} ****`)
 
-    for(const rmuserlist of removeduserarr){
-      let rmusername = rmuserlist.login;
-      let removeuserActivity = await orgActivity.getremoveUserData(orgsname, rmusername);
-      if(removeuserActivity.status === 'success'){
-        console.log(`${rmusername} - Inactive users removed from - ${orgsname}`);
-        Object.assign(rmuserlist, {status:1, description:'user is removed from organization'});
-        rmvlen++;
-      }else{
-        console.log(`${rmusername} - Due to some error not removed from - ${orgsname}`);
-        Object.assign(rmuserlist, {status:0, description:'user is retained from organization'});
-      }
-    }
-  }else{
-    console.log(`**** Skipping the remove inactive user lists from - ${orgsname} process. **** `)
-    rmvlen = removeduserarr.length;
-  }
-
-  return {removeduserarr: removeduserarr, rmvlen: rmvlen};
-}
 
 function saveIntermediateData(directory, data) {
   try {
