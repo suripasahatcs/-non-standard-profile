@@ -37,6 +37,7 @@ async function run() {
   for(const organization of organizationlist){
     console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
     const orgsComments = await orgActivity.getOrgsValid(organization);
+    console.log(orgsComments)
     if(orgsComments.status !== 'error') {
       const userActivity = await orgActivity.getUserActivity(organization);
       

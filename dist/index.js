@@ -10591,14 +10591,6 @@ module.exports = class OrganizationUserActivity {
     return this._organization;
   }
 
-  get repositoryClient() {
-    return this._repositoryActivity;
-  }
-
-  get removeUserClient() {
-    return this._removeUser;
-  }
-
   async getUserActivity(org) {
     const self = this;
 
@@ -10701,6 +10693,7 @@ module.exports = class Organization {
     findUsers(org) {
       return this.octokit.paginate("GET /orgs/:org/members", {org: org, per_page: 100})
         .then(members => {
+            console.log('1***')
           return members.map(member => {
             return {
               login: member.login,
@@ -10997,6 +10990,7 @@ async function run() {
   for(const organization of organizationlist){
     console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
     const orgsComments = await orgActivity.getOrgsValid(organization);
+    console.log(orgsComments)
     if(orgsComments.status !== 'error') {
       const userActivity = await orgActivity.getUserActivity(organization);
       
