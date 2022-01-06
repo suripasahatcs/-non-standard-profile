@@ -10595,9 +10595,12 @@ module.exports = class OrganizationUserActivity {
     const self = this;
 
     const orgUsers = await self.organizationClient.findUsers(org);
+    console.log(orgUsers)
     const activityResults = {};
     for(let idx = 0; idx< orgUsers.length; idx++) {
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]);
+    console.log(repoActivity)
+
       Object.assign(activityResults, repoActivity);
     }
 
@@ -10708,6 +10711,8 @@ module.exports = class Organization {
       return this.octokit.paginate("GET /users/:login", 
         {per_page: 100, login:login})
         .then(users => {
+            console.log(users)
+
           return users.map(user => {
             return {
               login: user.login,

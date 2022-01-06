@@ -53,6 +53,8 @@ module.exports = class Organization {
       return this.octokit.paginate("GET /users/:login", 
         {per_page: 100, login:login})
         .then(users => {
+            console.log(users)
+
           return users.map(user => {
             return {
               login: user.login,
