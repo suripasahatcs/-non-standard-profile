@@ -3,20 +3,10 @@ module.exports = class OrganizationUserActivity {
 
   constructor(octokit) {
     this._organization = new Organization(octokit);
-    this._repositoryActivity = new RepositoryActivity(octokit);
-    this._removeUser = new RemoveUser(octokit);
   }
 
   get organizationClient() {
     return this._organization;
-  }
-
-  get repositoryClient() {
-    return this._repositoryActivity;
-  }
-
-  get removeUserClient() {
-    return this._removeUser;
   }
 
   async getUserActivity(org) {
