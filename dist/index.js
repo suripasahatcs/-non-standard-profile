@@ -10585,8 +10585,6 @@ module.exports = class OrganizationUserActivity {
 
   constructor(octokit) {
     this._organization = new Organization(octokit);
-    this._repositoryActivity = new RepositoryActivity(octokit);
-    this._removeUser = new RemoveUser(octokit);
   }
 
   get organizationClient() {
