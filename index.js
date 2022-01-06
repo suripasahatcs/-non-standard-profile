@@ -2,7 +2,7 @@ const fs = require('fs')
   , path = require('path')
   , core = require('@actions/core')
   , io = require('@actions/io')
-  , OrganizationActivity = require('./src/OrgsUserActivity')
+  , OrganizationActivity = require('./src/githublib/OrgsUserActivity')
   , githubClient = require('./src/githublib/githubClient')
   
   , OrgsssActivity = require('./src/githublib/api')
