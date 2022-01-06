@@ -16,7 +16,7 @@ module.exports = class OrganizationUserActivity {
     let activityResults = [];
     for(let idx = 0; idx< orgUsers.length; idx++) {
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
-      activityResults =[...activityResults, repoActivity];
+      activityResults =[...activityResults, ...repoActivity];
     }
 
 
