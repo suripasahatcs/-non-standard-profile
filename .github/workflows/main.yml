@@ -33,9 +33,8 @@ jobs:
       - name: Results
         run: |
           
-          echo "Non- standard User - ${{ steps.analyze_org.outputs.report_json }}"
+          echo "Non- standard User - ${{ steps.analyze_org.outputs.jsonfinallist }}"
           echo "Non Standard UserCount - ${{ steps.analyze_org.outputs.usercount }}"
-          #echo "rmuserjson - ${{ steps.analyze_org.outputs.rmuserjson }}"
 
       - name: Attach Artifacts
         uses: actions/upload-artifact@v2
