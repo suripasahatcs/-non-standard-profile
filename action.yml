@@ -1,0 +1,31 @@
+name: List of Non standard Profiles
+description: A summary non-standard profile for an organization
+author: Suripa Saha
+
+inputs:
+  token:
+    description: GitHub Access Token.
+    required: true
+
+  outputDir:
+    description: The output directory for the report.
+    required: true
+    default: ${{ github.workspace }}
+
+  organization:
+    description: The organization name.
+    required: true
+
+  
+  octokit_max_retries:
+    description: Maximum number of retires when using the Octokit REST API
+    required: true
+    default: 15
+
+runs:
+  using: node12
+  main: dist/index.js
+
+branding:
+  icon: users
+  color: orange

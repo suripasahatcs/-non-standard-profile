@@ -1,0 +1,50 @@
+name: List of Non standard profiles
+
+on:
+  workflow_dispatch:
+    inputs:
+      action_branch:
+        description: The branch of the action to use
+        default: main
+        
+      organization:
+        description: The organization to process
+        default: internal-test-organization
+        
+jobs:
+  orgs:
+    name: Analyze Organization
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Action
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.action_branch }}
+        
+      - name: Analyze organization
+        id: analyze_org
+        uses: ./
+        with:
+          token: ${{ secrets.OCTODEMO_TEMP_TOKEN }}
+          organization: ${{ github.event.inputs.organization }}
+          
+      - name: Results
+        run: |
+          
+          echo "Non- standard User - ${{ steps.analyze_org.outputs.report_json }}"
+          echo "Non Standard UserCount - ${{ steps.analyze_org.outputs.usercount }}"
+          #echo "rmuserjson - ${{ steps.analyze_org.outputs.rmuserjson }}"
+
+      - name: Attach Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: |
+            ${{ steps.analyze_org.outputs.report_json }}
+
+
+          
+
+        
