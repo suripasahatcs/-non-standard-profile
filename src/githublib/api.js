@@ -64,13 +64,12 @@ module.exports = class Organization {
     
     findNonstdUsers(org) {
       return this.octokit.paginate("GET /users/member.login", {org: org, per_page: 100})
-        .then(members => {
+        .then(users => {
           return users.map(user => {
             return {
               login: user.login,
               email: user.email || '',
               company: user.company
-              public_repos: user.public_repos
             };
           });
         });
