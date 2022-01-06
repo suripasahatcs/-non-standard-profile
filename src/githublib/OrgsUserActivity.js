@@ -13,10 +13,10 @@ module.exports = class OrganizationUserActivity {
     const self = this;
 
     const orgUsers = await self.organizationClient.findUsers(org);
-    const activityResults = {};
+    const activityResults = [];
     for(let idx = 0; idx< orgUsers.length; idx++) {
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
-      Object.assign(activityResults, repoActivity);
+      activityResults =[...activityResults, repoActivity];
     }
 
 
