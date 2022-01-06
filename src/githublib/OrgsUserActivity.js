@@ -19,48 +19,24 @@ module.exports = class OrganizationUserActivity {
     return this._removeUser;
   }
 
-  async getUserActivity(org, since) {
+  async getUserActivity(org) {
     const self = this;
 
-    const repositories = await self.organizationClient.getRepositories(org)
-      , orgUsers = await self.organizationClient.findUsers(org)
-    ;
-
+    const orgUsers = await self.organizationClient.findUsers(org);
     const activityResults = {};
-    for(let idx = 0; idx< repositories.length; idx++) {
-      const repoActivity = await self.repositoryClient.getActivity(repositories[idx], since);
+    for(let idx = 0; idx< orgUsers.length; idx++) {
+      const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]);
       Object.assign(activityResults, repoActivity);
     }
 
-    const userActivity = generateUserActivityData(activityResults);
 
-    orgUsers.forEach(user => {
-      if (userActivity[user.login]) {
-        if (user.email && user.email.length > 0) {
-          userActivity[user.login] = user.email;
-        }
-      } else {
-        const userData = new UserActivity(user.login, user.orgs);
-        userData.email = user.email;
-
-        userActivity[user.login] = userData
-      }
-    });
-    
+    console.log(activityResults)
 
     // An array of user activity objects
-    return Object.values(userActivity);
+    // return Object.values(activityResults);
   }
 
-  async getremoveUserData (org, user) {
-    const self = this;
-    const removeUser = await self.removeUserClient.getRemoveUserFrom(org, user);
-    
-    return removeUser;
-
-  }
-
-  async getOrgsValid (org) {
+   async getOrgsValid (org) {
     const self = this;
     const orgsValid = await self.organizationClient.getOrgs(org);
 

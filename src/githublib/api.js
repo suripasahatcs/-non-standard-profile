@@ -6,21 +6,7 @@ module.exports = class Organization {
       }
       this._octokit = octokit;
     }
-  
-    getRepositories(org) {
-      return this.octokit.paginate("GET /orgs/:org/repos", {org: org, per_page: 100})
-        .then(repos => {
-          console.log(`Processing ${repos.length} repositories`);
-          return repos.map(repo => { return {
-            name: repo.name,
-            owner: org, //TODO verify this in not in the payload
-            full_name: repo.full_name,
-            has_issues: repo.has_issues,
-            has_projects: repo.has_projects,
-            url: repo.html_url,
-          }});
-        })
-    }
+
   
     getOrgs(org) {
       return this.octokit.paginate("GET /orgs/:org",
@@ -62,14 +48,17 @@ module.exports = class Organization {
         });
     }
     
-    findNonstdUsers(org) {
-      return this.octokit.paginate("GET /users/member.login", {org: org, per_page: 100})
+    findNonstdUsers(login) {
+      return this.octokit.paginate("GET /users/:login", 
+        {per_page: 100, login:login})
         .then(users => {
           return users.map(user => {
             return {
               login: user.login,
+              name: user.name,
               email: user.email || '',
-              company: user.company
+              company: user.company,
+              repository: user.public_repos
             };
           });
         });

@@ -10601,48 +10601,24 @@ module.exports = class OrganizationUserActivity {
     return this._removeUser;
   }
 
-  async getUserActivity(org, since) {
+  async getUserActivity(org) {
     const self = this;
 
-    const repositories = await self.organizationClient.getRepositories(org)
-      , orgUsers = await self.organizationClient.findUsers(org)
-    ;
-
+    const orgUsers = await self.organizationClient.findUsers(org);
     const activityResults = {};
-    for(let idx = 0; idx< repositories.length; idx++) {
-      const repoActivity = await self.repositoryClient.getActivity(repositories[idx], since);
+    for(let idx = 0; idx< orgUsers.length; idx++) {
+      const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]);
       Object.assign(activityResults, repoActivity);
     }
 
-    const userActivity = generateUserActivityData(activityResults);
 
-    orgUsers.forEach(user => {
-      if (userActivity[user.login]) {
-        if (user.email && user.email.length > 0) {
-          userActivity[user.login] = user.email;
-        }
-      } else {
-        const userData = new UserActivity(user.login, user.orgs);
-        userData.email = user.email;
-
-        userActivity[user.login] = userData
-      }
-    });
-    
+    console.log(activityResults)
 
     // An array of user activity objects
-    return Object.values(userActivity);
+    // return Object.values(activityResults);
   }
 
-  async getremoveUserData (org, user) {
-    const self = this;
-    const removeUser = await self.removeUserClient.getRemoveUserFrom(org, user);
-    
-    return removeUser;
-
-  }
-
-  async getOrgsValid (org) {
+   async getOrgsValid (org) {
     const self = this;
     const orgsValid = await self.organizationClient.getOrgs(org);
 
@@ -10695,21 +10671,7 @@ module.exports = class Organization {
       }
       this._octokit = octokit;
     }
-  
-    getRepositories(org) {
-      return this.octokit.paginate("GET /orgs/:org/repos", {org: org, per_page: 100})
-        .then(repos => {
-          console.log(`Processing ${repos.length} repositories`);
-          return repos.map(repo => { return {
-            name: repo.name,
-            owner: org, //TODO verify this in not in the payload
-            full_name: repo.full_name,
-            has_issues: repo.has_issues,
-            has_projects: repo.has_projects,
-            url: repo.html_url,
-          }});
-        })
-    }
+
   
     getOrgs(org) {
       return this.octokit.paginate("GET /orgs/:org",
@@ -10751,14 +10713,17 @@ module.exports = class Organization {
         });
     }
     
-    findNonstdUsers(org) {
-      return this.octokit.paginate("GET /users/member.login", {org: org, per_page: 100})
+    findNonstdUsers(login) {
+      return this.octokit.paginate("GET /users/:login", 
+        {per_page: 100, login:login})
         .then(users => {
           return users.map(user => {
             return {
               login: user.login,
+              name: user.name,
               email: user.email || '',
-              company: user.company
+              company: user.company,
+              repository: user.public_repos
             };
           });
         });
@@ -11006,37 +10971,17 @@ const fs = __nccwpck_require__(7147)
 ;
 
 async function run() {
-  const since = core.getInput('since')
-    , token = getRequiredInput('token')
+  const token = getRequiredInput('token')
     , outputDir = getRequiredInput('outputDir')
     , organizationinp = getRequiredInput('organization')
     , maxRetries = getRequiredInput('octokit_max_retries')
   ;
 
 
-  if((!Number(days)) || (days < 0)) {
-    throw new Error('Provide a valid activity_days - It accept only Positive Number');
-  }
-
   let regex = /^[\w\.\_\-]+((,|-)[\w\.\_\-]+)*[\w\.\_\-]+$/g;
   let validate_org = regex.test(organizationinp);
   if((!validate_org)) {
     throw new Error('Provide a valid organization - It accept only comma separated value');
-  }
-
-  let sinceregex = /^(20)\d\d-(0[1-9]|1[012])-([012]\d|3[01])T([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/ 
-;
-
-  let fromDate;
-  if (since) {
-    let validate_since = sinceregex.test(since);
-    if((!validate_since)) {
-      throw new Error('Provide a valid since - It accept only following format - YYYY-MM-DDTHH:mm:ss');
-    }
-    console.log(`Since Date has been specified, using that instead of active_days`)
-    fromDate = dateUtil.getFromDate(since);
-  } else {
-    fromDate = dateUtil.convertDaysToDate(days);
   }
   
   // Ensure that the output directory exists before we our limited API usage
@@ -11055,20 +11000,8 @@ async function run() {
     console.log(`Attempting to generate ${organization} - user activity data, this could take some time...`);
     const orgsComments = await orgActivity.getOrgsValid(organization);
     if(orgsComments.status !== 'error') {
-      const userActivity = await orgActivity.getUserActivity(organization, fromDate);
-      const jsonresp = userActivity.map(activity => activity.jsonPayload);
-      const jsonlist = jsonresp.filter(user => { return user.isActive === false });
-      // console.log(jsonlist)
-      console.log(`******* RemoveFlag - ${removeFlag}`)
-      // const removeduserlist = jsonlist;
-      // const removeduserlist = [{login:'1649898',email: '', isActive: false, orgs: 'scb-et', commits: 0, issues: 0, issueComments: 0, prComments: 0},
-      // {login:'manitest',email: '', isActive: false, orgs: 'scb-et', commits: 0, issues: 0, issueComments: 0, prComments: 0}]; 
-      const removeduserlist = [{login:'Meiyanthan',email: '', isActive: false, orgs: 'internal-test-organization', commits: 0, issues: 0, issueComments: 0, prComments: 0},
-                                {login:'manitest',email: '', isActive: false, orgs: 'internal-test-organization', commits: 0, issues: 0, issueComments: 0, prComments: 0}];
-      const removeMulUserRes = await removeMultipleUser(orgActivity, organization, removeduserlist, removeFlag);
-      removeMulUserList = [...removeMulUserList, ...removeMulUserRes.removeduserarr];
-      jsonfinallist = [...jsonfinallist, ...jsonlist];
-      rmvconfrm += removeMulUserRes.rmvlen;
+      const userActivity = await orgActivity.getUserActivity(organization);
+      
     }
   }
 
