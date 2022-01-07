@@ -45,11 +45,15 @@ jobs:
 
 # Job for sending mails-
 
-
+jobs: 
   send_mail : 
     runs-on : Ubuntu-latest
     
     steps:
+      - name: Checkout Action
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.action_branch }}
       - name: Send mail
         uses: ./
         with:
