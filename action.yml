@@ -3,18 +3,18 @@ description: A summary non-standard profile for an organization
 author: Suripa Saha
 
 inputs:
-  token:
-    description: GitHub Access Token.
-    required: true
+  # token:
+  #   description: GitHub Access Token.
+  #   required: true
 
   outputDir:
     description: The output directory for the report.
     required: true
     default: ${{ github.workspace }}
 
-  organization:
-    description: The organization name.
-    required: true
+  # organization:
+  #   description: The organization name.
+  #   required: true
 
   
   octokit_max_retries:
