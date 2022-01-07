@@ -21,6 +21,7 @@ inputs:
     description: Maximum number of retires when using the Octokit REST API
     required: false
     default: 15
+    
   server_address:
     description: SMTP server address
     required: false
