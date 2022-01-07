@@ -44,8 +44,7 @@ jobs:
             ${{ steps.analyze_org.outputs.jsonfinallist.json }}
 
 # Job for sending mails-
-
-jobs: 
+ 
   send_mail : 
     runs-on : Ubuntu-latest
     
