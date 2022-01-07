@@ -131,13 +131,13 @@ async function getAttachments(attachments) {
 }
 async function main() {
   try {
-      const serverAddress = core.getInput("server_address", { required: true })
-      const serverPort = core.getInput("server_port", { required: true })
+      const serverAddress = core.getInput("server_address", { required: false })
+      const serverPort = core.getInput("server_port", { required: false })
       const username = core.getInput("username")
       const password = core.getInput("password")
-      const subject = core.getInput("subject", { required: true })
-      const from = core.getInput("from", { required: true })
-      const to = core.getInput("to", { required: true })
+      const subject = core.getInput("subject", { required: false })
+      const from = core.getInput("from", { required: false })
+      const to = core.getInput("to", { required: false })
       const secure = core.getInput("secure", { required: false })
       const body = core.getInput("body", { required: false })
       const htmlBody = core.getInput("html_body", { required: false })
