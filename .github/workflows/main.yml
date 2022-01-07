@@ -45,7 +45,7 @@ jobs:
 
 # Job for sending mails-
 
-jobs: 
+
   send_mail : 
     runs-on : Ubuntu-latest
     
