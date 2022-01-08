@@ -21,7 +21,7 @@ module.exports = class OrganizationUserActivity {
       
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
         {
-                if((orgUsers[idx]['login'].company != 'TCS') || (orgUsers[idx]['login'].email == 'null') ||  (orgUsers[idx]['login'].public_repos != 0) || (orgUsers[idx]['login'].login != 'null') )
+                if((orgUsers[idx]['login'].company != 'TCS') || (orgUsers[idx]['login'].email == 'null') ||  (orgUsers[idx]['login'].public_repos != 0))
                 {
                   nonstduserlogin.push(login)
                 }
