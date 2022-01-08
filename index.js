@@ -89,7 +89,7 @@ function saveIntermediateData(directory, data) {
   try {
     const file = path.join(directory, 'jsonfinallist.json');
     fs.writeFileSync(file, JSON.stringify(data));
-    core.setOutput('jsonfinallist_json', file);
+    core.setOutput('nonstd_profile_list', file);
   } catch (err) {
     console.error(`Failed to save intermediate data: ${err}`);
   }

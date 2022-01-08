@@ -39,8 +39,8 @@ jobs:
       - name: Attach Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: reports
-          path: ./src/githublib
+          name: nonstandardreports
+          path: ${{ steps.analyze_org.outputs.nonstd_profile_list }}
             
 
 # Job for sending mails-
