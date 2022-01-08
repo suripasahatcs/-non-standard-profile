@@ -33,14 +33,14 @@ jobs:
       - name: Results
         run: |
           
-          echo "Non- standard User - ${{ steps.analyze_org.outputs.jsonfinallist }}"
+          echo "Non- standard User - ${{ steps.analyze_org.outputs.suripasfile }}"
           echo "Non Standard UserCount - ${{ steps.analyze_org.outputs.usercount }}"
 
       - name: Attach Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: nonstandardreports
-          path: ${{ steps.analyze_org.outputs.jsonfinallist }}
+          path: ${{ steps.analyze_org.outputs.suripasfile }}
             
 
 # Job for sending mails-

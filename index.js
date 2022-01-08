@@ -51,6 +51,9 @@ async function run() {
   // console.log(removeMulUserList);
   console.log('******final*******')
   console.log(jsonfinallist);
+
+  console.log(`User activity data captured, generating inactive user report... `);
+  saveIntermediateData(outputDir, jsonfinallist);
   
   
   //***end test */
@@ -84,12 +87,11 @@ function getRequiredInput(name) {
 }
 
 
-
 function saveIntermediateData(directory, data) {
   try {
     const file = path.join(directory, 'jsonfinallist.json');
     fs.writeFileSync(file, JSON.stringify(data));
-    core.setOutput('jsonfinallist', file);
+    core.setOutput('suripasfile', file);
   } catch (err) {
     console.error(`Failed to save intermediate data: ${err}`);
   }
