@@ -58,7 +58,9 @@ module.exports = class Organization {
               name: user.name,
               email: user.email || '',
               company: user.company,
-              repository: user.public_repos
+              public_repos: user.public_repos
+              // non-std-fields = email,
+	            // message: "Non standard values on key fields"
             };
           });
         });

@@ -14,9 +14,39 @@ module.exports = class OrganizationUserActivity {
 
     const orgUsers = await self.organizationClient.findUsers(org);
     let activityResults = [];
-    for(let idx = 0; idx< orgUsers.length; idx++) {
+    let nonstduserlogin = [];
+    let nonstduseremail = [];
+    for(let idx = 0; idx< orgUsers.length; idx++) 
+    {
+      
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
-      activityResults =[...activityResults, ...repoActivity];
+        {
+                if((company != 'TCS') || (email == 'null') ||  (public_repos != 0) || (login!= 'null') )
+                {
+                  nonstduserlogin.push(login)
+                }
+                if( (email != 'null') )
+                {
+                  nonstduseremail.push(email)
+                }
+                // if(email == 'null')
+                // {
+                //   throw new Error("Please provide correct email")
+                // }
+                // if(public_repos != 0)
+                // {
+                //   throw new Error("Your profile contains public repository")
+                // }
+                // let regex = /^[0-9]{6,6}$/
+                // let validate_login = regex.test(login);
+                // if((!validate_login)){
+                //   throw new Error("Your PSID is incorrect")
+                // }
+        }
+
+                activityResults =[  activityResults, ...repoActivity];
+                nonstduserlogin =[  nonstduserlogin, ...repoActivity];
+                nonstduseremail =[  nonstduseremail, ...repoActivity];
     }
 
 
