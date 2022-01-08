@@ -40,8 +40,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: reports
-          path: |
-            ${{ steps.analyze_org.outputs.jsonfinallist.json }}
+          path: .
+            
 
 # Job for sending mails-
  
