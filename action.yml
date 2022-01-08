@@ -3,9 +3,9 @@ description: A summary non-standard profile for an organization
 author: Suripa Saha
 
 inputs:
-  token:
-    description: GitHub Access Token.
-    required: false
+  # token:
+  #   description: GitHub Access Token.
+  #   required: false
 
   outputDir:
     description: The output directory for the report.
