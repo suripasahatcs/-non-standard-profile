@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: nonstandardreports
-          path: ${{ steps.analyze_org.outputs.nonstd_profile_list }}
+          path: ${{ steps.analyze_org.outputs.jsonfinallist }}
             
 
 # Job for sending mails-
