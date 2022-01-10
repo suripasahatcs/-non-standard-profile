@@ -20,10 +20,10 @@ module.exports = class OrganizationUserActivity {
     for(let idx = 0; idx< orgUsers.length; idx++) 
     {
       
-      const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[1]['login']);
-        {       nonstduseremail.push(repoActivity[1]['email'])
-        nonstduserlogin.push(orgUsers[1]['login'])
-        //nonstduserattribute.push(orgUsers[idx]['company'])
+      const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
+        {       nonstduseremail.push(orgUsers[idx]['node_id'])
+        nonstduserlogin.push(orgUsers[idx]['login'])
+        nonstduserattribute.push(orgUsers[idx]['company'])
          
 
                 // if((orgUsers[idx]['company'] != 'TCS'))
