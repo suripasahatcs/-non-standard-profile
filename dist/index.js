@@ -31883,37 +31883,42 @@ module.exports = class OrganizationUserActivity {
     let activityResults = [];
     let nonstduserlogin = [];
     let nonstduseremail = [];
+    let nonstduserattribute = [];
     for(let idx = 0; idx< orgUsers.length; idx++) 
     {
       
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
         {
-                if((activityResults.company != 'TCS') || (activityResults.email == 'null') ||  (activityResults.public_repos != 0))
+                if((activityResults.company != 'TCS'))
                 {
-                  nonstduserlogin.push('login')
+                 
+                  nonstduserlogin.push(orgUsers[idx][login])
+                  nonstduserattribute.push(orgUsers[idx]['company'])
+                  nonstduseremail.push(activityResults.email)
+
                 }
-                if( (activityResults.email != 'null') )
-                {
-                  nonstduseremail.push('email')
-                }
-                // if(email == 'null')
+                // if( (activityResults.email != 'null') )
                 // {
-                //   throw new Error("Please provide correct email")
+                //   nonstduseremail.push(activityResults.email)
                 // }
-                // if(public_repos != 0)
+              
+                // if(public_repos > 0)
                 // {
-                //   throw new Error("Your profile contains public repository")
+                //   nonstduseremail.push('public_repos')
                 // }
-                // let regex = /^[0-9]{6,6}$/
-                // let validate_login = regex.test(login);
-                // if((!validate_login)){
-                //   throw new Error("Your PSID is incorrect")
-                // }
+                //  let regex = /^[0-9]{6,6}$/
+                //  let validate_login = regex.test(orgUsers[idx]['login']);
+                //  if((!validate_login)){
+                //   nonstduseremail.push('login')
+                //  }
+                 console.log(nonstduseremail)
+                 console.log(nonstduserlogin)
+                 console.log(nonstduserattribute)
+
         }
 
-                activityResults =[  activityResults, ...repoActivity];
-                nonstduserlogin =[  nonstduserlogin, ...repoActivity];
-                nonstduseremail =[  nonstduseremail, ...repoActivity];
+                activityResults =[  activityResults, ...nonstduseremail];
+          
     }
 
 
