@@ -29,7 +29,9 @@ module.exports = class OrganizationUserActivity {
          console.log(repoActivity)
          for(let j = 0; j< repoActivity.length; j++)
          {
-          nonstduserlogin.push(repoActivity.email)
+          nonstduserlogin.push(repoActivity[j]['email'])
+          console.log('*****************')
+          nonstduserlogin.push(repoActivity[j+1]['email'])
 
          }
         //   nonstduseremail.push(repoActivity.email)
