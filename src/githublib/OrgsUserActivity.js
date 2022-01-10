@@ -13,7 +13,7 @@ module.exports = class OrganizationUserActivity {
     const self = this;
 
     const orgUsers = await self.organizationClient.findUsers(org);
-    const nonstd = await self.organizationClient.findUsers(org);
+    const nonstd = await self.organizationClient.findNonstdUsers(org);
     let activityResults = [];
     let nonstduserlogin = [];
     let nonstduseremail = [];
@@ -23,11 +23,13 @@ module.exports = class OrganizationUserActivity {
     {
       //nonstduseremail.push(orgUsers[idx]['node_id'])
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
-        {  
-          nonstduseremail.push(repoActivity.email)
+        {   console.log('******repoActivity*******')
+         console.log(repoActivity)
+
+        //   nonstduseremail.push(repoActivity.email)
           
-        nonstduserlogin.push(orgUsers[idx]['login'])
-        nonstduserattribute.push(repoActivity.public_repos)
+        // nonstduserlogin.push(orgUsers[idx]['login'])
+        // nonstduserattribute.push(repoActivity.public_repos)
          
 
                 // if((orgUsers[idx]['company'] != 'TCS'))
@@ -53,12 +55,12 @@ module.exports = class OrganizationUserActivity {
                 //  if((!validate_login)){
                 //   nonstduseremail.push('login')
                 //  }
-                console.log('******email*******')
-                 console.log(nonstduseremail)
-                 console.log('******login*******')
-                 console.log(nonstduserlogin)
-                 console.log('******publicrepos*******')
-                 console.log(nonstduserattribute)
+                // console.log('******email*******')
+                //  console.log(nonstduseremail)
+                //  console.log('******login*******')
+                //  console.log(nonstduserlogin)
+                //  console.log('******publicrepos*******')
+                //  console.log(nonstduserattribute)
 
         }
 
