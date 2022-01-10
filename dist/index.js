@@ -31892,7 +31892,7 @@ module.exports = class OrganizationUserActivity {
                 if((activityResults.company != 'TCS'))
                 {
                  
-                  nonstduserlogin.push(orgUsers[idx][login])
+                  nonstduserlogin.push(orgUsers[idx]['login'])
                   nonstduserattribute.push(orgUsers[idx]['company'])
                   nonstduseremail.push(activityResults.email)
 
