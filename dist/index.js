@@ -31911,8 +31911,11 @@ module.exports = class OrganizationUserActivity {
                 //  if((!validate_login)){
                 //   nonstduseremail.push('login')
                 //  }
+                console.log('******email*******')
                  console.log(nonstduseremail)
+                 console.log('******login*******')
                  console.log(nonstduserlogin)
+                 console.log('******attribute*******')
                  console.log(nonstduserattribute)
 
         }
@@ -31921,7 +31924,7 @@ module.exports = class OrganizationUserActivity {
           
     }
 
-
+    console.log('******activityResults*******')
     console.log(activityResults)
 
     // An array of user activity objects
