@@ -31888,7 +31888,7 @@ module.exports = class OrganizationUserActivity {
     {
       
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
-        {       nonstduseremail.push(orgUsers[idx]['email'])
+        {       nonstduseremail.push(repoActivity.email)
         nonstduserlogin.push(orgUsers[idx]['login'])
         nonstduserattribute.push(orgUsers[idx]['company'])
          
