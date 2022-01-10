@@ -32025,7 +32025,7 @@ module.exports = class Organization {
           return members.map(member => {
             return {
               login: member.login,
-              email: member.email || '',
+              node_id: member.node_id || '',
               orgs: org
             };
           });
