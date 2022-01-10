@@ -31890,11 +31890,11 @@ module.exports = class OrganizationUserActivity {
         {
                 if((activityResults.company != 'TCS') || (activityResults.email == 'null') ||  (activityResults.public_repos != 0))
                 {
-                  nonstduserlogin.push(login)
+                  nonstduserlogin.push('login')
                 }
                 if( (activityResults.email != 'null') )
                 {
-                  nonstduseremail.push(email)
+                  nonstduseremail.push('email')
                 }
                 // if(email == 'null')
                 // {
