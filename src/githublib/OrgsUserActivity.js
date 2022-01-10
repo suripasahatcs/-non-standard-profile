@@ -25,7 +25,7 @@ module.exports = class OrganizationUserActivity {
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
         {   console.log('******repoActivity*******')
          console.log(repoActivity)
-         for(let j = 0; j<= repoActivity.length; j++)
+         for(let j = 0; j< repoActivity.length; j++)
          {
           nonstduserlogin.push(repoActivity.email)
 
