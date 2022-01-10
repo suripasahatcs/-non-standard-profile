@@ -31892,7 +31892,11 @@ module.exports = class OrganizationUserActivity {
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
         {   console.log('******repoActivity*******')
          console.log(repoActivity)
+         for(let j = 0; j<= repoActivity.length; j++)
+         {
+          nonstduserlogin.push(repoActivity[j]['email'])
 
+         }
         //   nonstduseremail.push(repoActivity.email)
           
         // nonstduserlogin.push(orgUsers[idx]['login'])
@@ -31922,8 +31926,8 @@ module.exports = class OrganizationUserActivity {
                 //  if((!validate_login)){
                 //   nonstduseremail.push('login')
                 //  }
-                // console.log('******email*******')
-                //  console.log(nonstduseremail)
+                console.log('******email*******')
+                 console.log(nonstduserlogin)
                 //  console.log('******login*******')
                 //  console.log(nonstduserlogin)
                 //  console.log('******publicrepos*******')
