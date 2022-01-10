@@ -31884,11 +31884,12 @@ module.exports = class OrganizationUserActivity {
     let nonstduserlogin = [];
     let nonstduseremail = [];
     let nonstduserattribute = [];
+    
     for(let idx = 0; idx< orgUsers.length; idx++) 
     {
-      
+      nonstduseremail.push(orgUsers[idx]['node_id'])
       const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
-        {       nonstduseremail.push(orgUsers[idx]['node_id'])
+        {       //nonstduseremail.push(orgUsers[idx]['node_id'])
         nonstduserlogin.push(orgUsers[idx]['login'])
         nonstduserattribute.push(orgUsers[idx]['company'])
          
