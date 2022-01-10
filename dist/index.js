@@ -31889,7 +31889,7 @@ module.exports = class OrganizationUserActivity {
     for(let idx = 0; idx< orgUsers.length; idx++) 
     {
       //nonstduseremail.push(orgUsers[idx]['node_id'])
-      const repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
+      var repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
       console.log('******repoActivityLength*******')
       console.log(repoActivity.length)
         {   console.log('******repoActivity*******')
