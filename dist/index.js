@@ -31934,8 +31934,7 @@ module.exports = class OrganizationUserActivity {
             nonstduserlogin.push(repoActivity[j]['login'])
            }
          
-          console.log('******non std*******')
-           console.log(nonstduserlogin)
+          
            console.log('******attribute*******')
            console.log(nonstduserattribute)
 
@@ -31963,6 +31962,8 @@ module.exports = class OrganizationUserActivity {
                // activityResults =[  activityResults, ...nonstduseremail];
           
     }
+    console.log('******non std*******')
+           console.log(nonstduserlogin)
     console.log('******attribute*******')
     console.log(nonstduserattribute)
     console.log('******final*******')
