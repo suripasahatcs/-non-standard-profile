@@ -13,13 +13,13 @@ module.exports = class OrganizationUserActivity {
     const self = this;
 
     const orgUsers = await self.organizationClient.findUsers(org);
-    const nonstd = await self.organizationClient.findNonstdUsers(org);
+    //const nonstd = await self.organizationClient.findNonstdUsers(org);
     let activityResults = [];
     let nonstduserlogin = [];
     let nonstduseremail = [];
     let nonstduserattribute = [];
     let repoActivity = [];
-    
+    let finalres =[];
     
     //   repoActivity2 = await self.organizationClient.findNonstdUsers(orgUsers[1]['login']);
     //   console.log(repoActivity1)
@@ -39,40 +39,41 @@ module.exports = class OrganizationUserActivity {
          {
           nonstduserlogin.push(repoActivity[j]['email'])
           console.log('*****************')
-          // nonstduserlogin.push(repoActivity[j+1]['email'])
+          if((repoActivity[j]['company'] != 'TCS'))
+          {
+           
+            // nonstduserlogin.push(repoActivity[j]['login'])
+            nonstduserattribute.push('company')
+            // nonstduseremail.push(repoActivity.email)
+            
 
+          }
+          if( (repoActivity[j]['email'] != 'null') )
+          {
+            nonstduserattribute.push('email')
+          }
+        
+          if(repoActivity[j]['public_repos'] > 0)
+          {
+            nonstduserattribute.push('public_repos')
+          }
+           let regex = /^[0-9]{6,6}$/
+           let validate_login = regex.test(repoActivity[j]);
+           if((!validate_login)){
+            nonstduserattribute.push('login')
+           }
          }
         //   nonstduseremail.push(repoActivity.email)
           
         // nonstduserlogin.push(orgUsers[idx]['login'])
         // nonstduserattribute.push(repoActivity.public_repos)
          
+        repoActivity = [repoActivity,...{nonstduser:nonstduserattribute,message: 'non std user'}];
 
-                // if((orgUsers[idx]['company'] != 'TCS'))
-                // {
-                 
-                //   nonstduserlogin.push(orgUsers[idx]['login'])
-                //   nonstduserattribute.push(orgUsers[idx]['company'])
-                //    nonstduseremail.push(repoActivity.email)
-                  
-
-                // }
-                // if( (activityResults.email != 'null') )
-                // {
-                //   nonstduseremail.push(activityResults.email)
-                // }
-              
-                // if(public_repos > 0)
-                // {
-                //   nonstduseremail.push('public_repos')
-                // }
-                //  let regex = /^[0-9]{6,6}$/
-                //  let validate_login = regex.test(orgUsers[idx]['login']);
-                //  if((!validate_login)){
-                //   nonstduseremail.push('login')
-                //  }
-                console.log('******email*******')
-                 console.log(nonstduserlogin)
+         finalres.push(repoActivity)
+                
+                console.log('******non std*******')
+                 console.log(nonstduserattribute)
                 //  console.log('******login*******')
                 //  console.log(nonstduserlogin)
                 //  console.log('******publicrepos*******')
@@ -80,15 +81,15 @@ module.exports = class OrganizationUserActivity {
 
         }
 
-                activityResults =[  activityResults, ...nonstduseremail];
+               // activityResults =[  activityResults, ...nonstduseremail];
           
     }
 
-    console.log('******activityResults*******')
-    console.log(activityResults)
+    console.log('******final*******')
+    console.log(finalres)
 
     // An array of user activity objects
-    return Object.values(activityResults);
+    return Object.values(finalres);
   }
 
    async getOrgsValid (org) {
