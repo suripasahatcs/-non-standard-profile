@@ -53,8 +53,8 @@ module.exports = class OrganizationUserActivity {
           }
         
           if(repoActivity[j]['public_repos'] > 0)
+          nonstduserattribute.push('public_repos');
           {
-            nonstduserattribute.push('public_repos');
             nonstduserlogin.push(repoActivity[j]['login'])
           }
           let regex = /^[0-999999]$/
@@ -65,8 +65,11 @@ module.exports = class OrganizationUserActivity {
          
           console.log('******non std*******')
            console.log(nonstduserlogin)
+           console.log('******attribute*******')
+           console.log(nonstduserattribute)
 
         repoActivity = [...repoActivity,{nonstduser:nonstduserattribute, message: 'non std user'}];
+        nonstduserattribute = [];
         
       
 
