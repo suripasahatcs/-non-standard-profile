@@ -19,7 +19,7 @@ module.exports = class OrganizationUserActivity {
     let nonstduseremail = [];
     let nonstduserattribute = [];
     let repoActivity = [];
-    let repoActivity2 = [];
+    
     
     //   repoActivity2 = await self.organizationClient.findNonstdUsers(orgUsers[1]['login']);
     //   console.log(repoActivity1)
@@ -27,7 +27,7 @@ module.exports = class OrganizationUserActivity {
 
     for(let idx = 0; idx< orgUsers.length; idx++) 
     {
-      repoActivity = [];
+      
       repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
       //nonstduseremail.push(orgUsers[idx]['node_id'])
       
@@ -39,7 +39,7 @@ module.exports = class OrganizationUserActivity {
          {
           nonstduserlogin.push(repoActivity[j]['email'])
           console.log('*****************')
-          nonstduserlogin.push(repoActivity[j+1]['email'])
+          // nonstduserlogin.push(repoActivity[j+1]['email'])
 
          }
         //   nonstduseremail.push(repoActivity.email)
