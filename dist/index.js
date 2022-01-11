@@ -31936,7 +31936,7 @@ module.exports = class OrganizationUserActivity {
            console.log(nonstduserattribute)
 
         repoActivity = [...repoActivity,{nonstduser:nonstduserattribute, message: 'non std user'}];
-        nonstduserattribute = [];
+        
         
       
 
@@ -31958,9 +31958,10 @@ module.exports = class OrganizationUserActivity {
     console.log(nonstduserattribute)
     console.log('******final*******')
     console.log(finalres)
-
+    nonstduserattribute = [];
     // An array of user activity objects
     return Object.values(finalres);
+    
   }
 
    async getOrgsValid (org) {
