@@ -65,6 +65,8 @@ module.exports = class OrganizationUserActivity {
          
           console.log('******non std*******')
            console.log(nonstduserlogin)
+           console.log('******attribute*******')
+           console.log(nonstduserattribute)
          
         repoActivity = [...repoActivity,{nonstduser:console.log(nonstduserattribute),message: 'non std user'}];
 
