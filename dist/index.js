@@ -31902,8 +31902,7 @@ module.exports = class OrganizationUserActivity {
       
         {   console.log('******repoActivity*******')
          console.log(repoActivity)
-         for(let j = 0; j< repoActivity.length; j++)
-         {
+         let j = 0;
           nonstduserlogin.push(repoActivity[j]['email'])
           console.log('*****************')
           if((repoActivity[j]['company'] != 'TCS'))
@@ -31929,11 +31928,8 @@ module.exports = class OrganizationUserActivity {
            if((!validate_login)){
             nonstduserattribute.push('login')
            }
-         }
-        //   nonstduseremail.push(repoActivity.email)
-          
-        // nonstduserlogin.push(orgUsers[idx]['login'])
-        // nonstduserattribute.push(repoActivity.public_repos)
+         
+       
          
         repoActivity = [repoActivity,...{nonstduser:nonstduserattribute,message: 'non std user'}];
 
