@@ -42,17 +42,20 @@ module.exports = class OrganizationUserActivity {
           {
            
             nonstduserattribute.push('company');
+            nonstduserlogin.push(repoActivity[j]['login'])
             
 
           }
           if( (repoActivity[j]['email'] !== 'null') )
           {
             nonstduserattribute.push('email');
+            nonstduserlogin.push(repoActivity[j]['login'])
           }
         
           if(repoActivity[j]['public_repos'] > 0)
           {
             nonstduserattribute.push('public_repos');
+            nonstduserlogin.push(repoActivity[j]['login'])
           }
           //  let regex = /^[0-9]{6,6}$/
           //  let validate_login = regex.test(repoActivity[j]['login']);
@@ -61,7 +64,7 @@ module.exports = class OrganizationUserActivity {
           //  }
          
           console.log('******non std*******')
-          // console.log(nonstduserattribute)
+           console.log(nonstduserlogin)
          
         repoActivity = [...repoActivity,{nonstduser:nonstduserattribute,message: 'non std user'}];
 
