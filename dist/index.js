@@ -31884,7 +31884,7 @@ module.exports = class OrganizationUserActivity {
     let activityResults = [];
     let nonstduserlogin = [];
     let nonstduseremail = [];
-    const nonstduserattribute = [];
+    let nonstduserattribute = [];
     let repoActivity = [];
     let finalres =[];
     
