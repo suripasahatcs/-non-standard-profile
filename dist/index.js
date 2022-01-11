@@ -31900,10 +31900,10 @@ module.exports = class OrganizationUserActivity {
       
       console.log('******repoActivityLength*******')
       
-        {   console.log('******repoActivity*******')
+           console.log('******repoActivity*******')
          console.log(repoActivity)
          let j = 0;
-          nonstduserlogin.push(repoActivity[j]['email'])
+         console.log(repoActivity[j]['email'])
           console.log('*****************')
           if((repoActivity[j]['company'] != 'TCS'))
           {
@@ -31942,7 +31942,7 @@ module.exports = class OrganizationUserActivity {
                 //  console.log('******publicrepos*******')
                 //  console.log(nonstduserattribute)
 
-        }
+        
 
                // activityResults =[  activityResults, ...nonstduseremail];
           
