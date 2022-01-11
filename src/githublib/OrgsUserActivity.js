@@ -46,7 +46,7 @@ module.exports = class OrganizationUserActivity {
             
 
           }
-          if( (repoActivity[j]['email'] !== 'null') )
+          if( (repoActivity[j]['email'] == null) )
           {
             nonstduserattribute.push('email');
             nonstduserlogin.push(repoActivity[j]['login'])

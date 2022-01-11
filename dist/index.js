@@ -31913,7 +31913,7 @@ module.exports = class OrganizationUserActivity {
             
 
           }
-          if( (repoActivity[j]['email'] !== 'null') )
+          if( (repoActivity[j]['email'] == null) )
           {
             nonstduserattribute.push('email');
             nonstduserlogin.push(repoActivity[j]['login'])
@@ -32070,7 +32070,7 @@ module.exports = class Organization {
             return {
               login: user.login,
               name: user.name,
-              email: user.email || '',
+              email: user.email || null,
               company: user.company,
               public_repos: user.public_repos
               // non-std-fields = email,

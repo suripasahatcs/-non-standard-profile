@@ -56,7 +56,7 @@ module.exports = class Organization {
             return {
               login: user.login,
               name: user.name,
-              email: user.email || '',
+              email: user.email || null,
               company: user.company,
               public_repos: user.public_repos
               // non-std-fields = email,
