@@ -31929,7 +31929,7 @@ module.exports = class OrganizationUserActivity {
            if((!validate_login)){
             nonstduserattribute.push('login')
            }
-           if((repoActivity[j]['company'] !== 'TCS') || (repoActivity[j]['email'] == null) || (repoActivity[j]['public_repos'] > 0) == null)
+           if((repoActivity[j]['company'] !== 'TCS') || (repoActivity[j]['email'] == null) || (repoActivity[j]['public_repos'] > 0))
            {
             nonstduserlogin.push(repoActivity[j]['login'])
            }
