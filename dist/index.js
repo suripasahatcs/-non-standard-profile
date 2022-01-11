@@ -31894,7 +31894,7 @@ module.exports = class OrganizationUserActivity {
 
     for(let idx = 0; idx< orgUsers.length; idx++) 
     {
-      
+      repoActivity = [];
       repoActivity = await self.organizationClient.findNonstdUsers(orgUsers[idx]['login']);
       //nonstduseremail.push(orgUsers[idx]['node_id'])
       
@@ -31905,13 +31905,13 @@ module.exports = class OrganizationUserActivity {
          let j = 0;
          console.log(repoActivity[j]['public_repos'])
           console.log('*****************')
-          // if(repoActivity[j]['company'] !== 'TCS')
-          // {
+          if(repoActivity[j]['company'] !== 'TCS')
+          {
            
-          //   nonstduserattribute.push('company');
+            nonstduserattribute.push('company');
             
 
-          // }
+          }
           if( (repoActivity[j]['email'] !== 'null') )
           {
             nonstduserattribute.push('email');
@@ -31921,20 +31921,21 @@ module.exports = class OrganizationUserActivity {
           {
             nonstduserattribute.push('public_repos');
           }
-           let regex = /^[0-9]{6,6}$/
-           let validate_login = regex.test(repoActivity[j]);
-           if((!validate_login)){
-            nonstduserattribute.push('login')
-           }
+          //  let regex = /^[0-9]{6,6}$/
+          //  let validate_login = regex.test(repoActivity[j]);
+          //  if((!validate_login)){
+          //   nonstduserattribute.push('login')
+          //  }
          
-       
+          console.log('******non std*******')
+          console.log(nonstduserattribute)
          
-        repoActivity = [repoActivity,...{nonstduser:nonstduserattribute,message: 'non std user'}];
+        repoActivity = [...repoActivity,{nonstduser:nonstduserattribute,message: 'non std user'}];
 
          finalres.push(repoActivity)
                 
-                console.log('******non std*******')
-                 console.log(nonstduserattribute)
+                console.log('******non std2*******')
+                 console.log(repoActivity)
                 //  console.log('******login*******')
                 //  console.log(nonstduserlogin)
                 //  console.log('******publicrepos*******')
