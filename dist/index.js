@@ -31958,7 +31958,9 @@ module.exports = class OrganizationUserActivity {
     console.log(nonstduserattribute)
     console.log('******final*******')
     console.log(finalres)
+    //Empty the nonstduserattribute array.
     nonstduserattribute = [];
+    nonstduserattribute.length = 0;
     // An array of user activity objects
     return Object.values(finalres);
     
