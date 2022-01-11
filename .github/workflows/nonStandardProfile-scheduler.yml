@@ -1,4 +1,4 @@
-name: List of Non standard profiles-scheduler-job
+name: Schedulerjob for Non standard profiles
 
 on:
   schedule: 
