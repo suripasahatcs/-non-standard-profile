@@ -31921,16 +31921,16 @@ module.exports = class OrganizationUserActivity {
           {
             nonstduserattribute.push('public_repos');
           }
-          //  let regex = /^[0-9]{6,6}$/
-          //  let validate_login = regex.test(repoActivity[j]);
-          //  if((!validate_login)){
-          //   nonstduserattribute.push('login')
-          //  }
+           let regex = /^[0-9]{6,6}$/
+           let validate_login = regex.test(repoActivity[j]['login']);
+           if((!validate_login)){
+            nonstduserattribute.push('login')
+           }
          
           console.log('******non std*******')
-          console.log(nonstduserattribute)
+          // console.log(nonstduserattribute)
          
-        repoActivity = [...repoActivity,{nonstduser:nonstduserattribute,message: 'non std user'}];
+        repoActivity = [repoActivity,...{nonstduser:nonstduserattribute,message: 'non std user'}];
 
          finalres.push(repoActivity)
                 
