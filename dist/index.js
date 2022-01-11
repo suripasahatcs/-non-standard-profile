@@ -31903,25 +31903,23 @@ module.exports = class OrganizationUserActivity {
            console.log('******repoActivity*******')
          console.log(repoActivity)
          let j = 0;
-         console.log(repoActivity[j]['email'])
+         console.log(repoActivity[j]['public_repos'])
           console.log('*****************')
-          if((repoActivity[j]['company'] != 'TCS'))
-          {
+          // if(repoActivity[j]['company'] !== 'TCS')
+          // {
            
-            // nonstduserlogin.push(repoActivity[j]['login'])
-            nonstduserattribute.push('company')
-            // nonstduseremail.push(repoActivity.email)
+          //   nonstduserattribute.push('company');
             
 
-          }
-          if( (repoActivity[j]['email'] != 'null') )
+          // }
+          if( (repoActivity[j]['email'] !== 'null') )
           {
-            nonstduserattribute.push('email')
+            nonstduserattribute.push('email');
           }
         
           if(repoActivity[j]['public_repos'] > 0)
           {
-            nonstduserattribute.push('public_repos')
+            nonstduserattribute.push('public_repos');
           }
            let regex = /^[0-9]{6,6}$/
            let validate_login = regex.test(repoActivity[j]);
