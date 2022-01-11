@@ -57,7 +57,7 @@ module.exports = class OrganizationUserActivity {
             nonstduserattribute.push('public_repos');
             //nonstduserlogin.push(repoActivity[j]['login'])
           }
-          let regex = /^[0-9]{6,6}$/
+          let regex = ("\\d{6}");
            let validate_login = regex.test(repoActivity[j]['login']);
            if((!validate_login)){
             nonstduserattribute.push('login')
