@@ -17,7 +17,7 @@ module.exports = class OrganizationUserActivity {
     let activityResults = [];
     let nonstduserlogin = [];
     let nonstduseremail = [];
-    let nonstduserattribute = [];
+    const nonstduserattribute = [];
     let repoActivity = [];
     let finalres =[];
     
@@ -65,10 +65,9 @@ module.exports = class OrganizationUserActivity {
          
           console.log('******non std*******')
            console.log(nonstduserlogin)
-           console.log('******attribute*******')
-           console.log(nonstduserattribute)
+           
          
-        repoActivity = [...repoActivity,{nonstduser:console.log(nonstduserattribute),message: 'non std user'}];
+        repoActivity = [...repoActivity,{nonstduser:nonstduserattribute, message: 'non std user'}];
 
          finalres.push(repoActivity)
                 
@@ -84,7 +83,8 @@ module.exports = class OrganizationUserActivity {
                // activityResults =[  activityResults, ...nonstduseremail];
           
     }
-
+    console.log('******attribute*******')
+    console.log(nonstduserattribute)
     console.log('******final*******')
     console.log(finalres)
 
