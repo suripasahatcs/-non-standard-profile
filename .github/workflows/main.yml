@@ -73,7 +73,7 @@ jobs:
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Hi User! Your profile is non standard,
+          body: Hi User! Your profile is non standard, The following users with PSID ${{ steps.analyze_org.outputs.nonstduserlogin }} are non-standard,
           # Optional carbon copy recipients:
           cc: pradipta.chatterjee98@gmail.com
           # Optional blind carbon copy recipients:
