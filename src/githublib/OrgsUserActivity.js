@@ -36,7 +36,6 @@ module.exports = class OrganizationUserActivity {
            console.log('******repoActivity*******')
          console.log(repoActivity)
          let j = 0;
-         let k = 0;
          console.log(repoActivity[j]['public_repos'])
           console.log('*****************')
           if(repoActivity[j]['company'] !== 'TCS')
@@ -67,8 +66,9 @@ module.exports = class OrganizationUserActivity {
           console.log('******non std*******')
            console.log(nonstduserlogin)
            
-         
+           for(let k = 0; k < nonstduserattribute.length; k++){
         repoActivity = [...repoActivity,{nonstduser:nonstduserattribute[k], message: 'non std user'}];
+      }
 
          finalres.push(repoActivity)
                 
