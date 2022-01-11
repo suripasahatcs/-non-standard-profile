@@ -31932,10 +31932,15 @@ module.exports = class OrganizationUserActivity {
          
           console.log('******non std*******')
            console.log(nonstduserlogin)
-           
-           for(let k = 0; k < nonstduserattribute.length; k++){
-        repoActivity = [...repoActivity,{nonstduser:nonstduserattribute[k], message: 'non std user'}];
-      }
+
+           do {
+            nonstduserattribute = nonstduserattribute[k] 
+              k++
+          }while(k < nonstduserattribute.length)
+
+        repoActivity = [...repoActivity,{nonstduser:nonstduserattribute}, {message: 'non std user'}];
+        
+      
 
          finalres.push(repoActivity)
                 
