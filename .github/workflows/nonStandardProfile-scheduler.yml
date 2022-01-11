@@ -1,4 +1,4 @@
-name: List of Non standard profiles
+name: List of Non standard profiles-scheduler-job
 
 on:
   schedule: 
