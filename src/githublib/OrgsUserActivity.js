@@ -65,14 +65,8 @@ module.exports = class OrganizationUserActivity {
          
           console.log('******non std*******')
            console.log(nonstduserlogin)
-          let k= 0
-           do {
-             
-            nonstduserattribute = nonstduserattribute[k] 
-              k++
-          }while(k < nonstduserattribute.length)
 
-        repoActivity = [...repoActivity,{nonstduser:nonstduserattribute}, {message: 'non std user'}];
+        repoActivity = [...repoActivity,{nonstduser:nonstduserattribute, message: 'non std user'}];
         
       
 
