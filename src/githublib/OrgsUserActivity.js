@@ -42,25 +42,29 @@ module.exports = class OrganizationUserActivity {
           {
            
             nonstduserattribute.push('company');
-            nonstduserlogin.push(repoActivity[j]['login'])
+            //nonstduserlogin.push(repoActivity[j]['login'])
             
 
           }
           if( (repoActivity[j]['email'] == null) )
           {
             nonstduserattribute.push('email');
-            nonstduserlogin.push(repoActivity[j]['login'])
+            //nonstduserlogin.push(repoActivity[j]['login'])
           }
         
           if(repoActivity[j]['public_repos'] > 0)
-          nonstduserattribute.push('public_repos');
           {
-            nonstduserlogin.push(repoActivity[j]['login'])
+            nonstduserattribute.push('public_repos');
+            //nonstduserlogin.push(repoActivity[j]['login'])
           }
           let regex = /^[0-999999]$/
            let validate_login = regex.test(repoActivity[j]['login']);
            if((!validate_login)){
             nonstduserattribute.push('login')
+           }
+           if((repoActivity[j]['company'] !== 'TCS') || (repoActivity[j]['email'] == null) || (repoActivity[j]['public_repos'] > 0) == null)
+           {
+            nonstduserlogin.push(repoActivity[j]['login'])
            }
          
           console.log('******non std*******')
@@ -80,8 +84,8 @@ module.exports = class OrganizationUserActivity {
             //Empty the nonstduserattribute array.
                 nonstduserattribute = [];
                 nonstduserattribute.length = 0;
-                nonstduserlogin = [];
-                nonstduserlogin.length = 0;
+               // nonstduserlogin = [];
+                //nonstduserlogin.length = 0;
                 //  console.log('******login*******')
                 //  console.log(nonstduserlogin)
                 //  console.log('******publicrepos*******')
