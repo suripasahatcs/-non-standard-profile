@@ -13,7 +13,7 @@ module.exports = class OrganizationUserActivity {
     const self = this;
 
     const orgUsers = await self.organizationClient.findUsers(org);
-    //const nonstd = await self.organizationClient.findNonstdUsers(org);
+    
     let activityResults = [];
     let nonstduserlogin = [];
     let nonstduseremail = [];
@@ -80,6 +80,8 @@ module.exports = class OrganizationUserActivity {
             //Empty the nonstduserattribute array.
                 nonstduserattribute = [];
                 nonstduserattribute.length = 0;
+                nonstduserlogin = [];
+                nonstduserlogin.length = 0;
                 //  console.log('******login*******')
                 //  console.log(nonstduserlogin)
                 //  console.log('******publicrepos*******')
