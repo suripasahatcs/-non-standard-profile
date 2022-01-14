@@ -31924,11 +31924,11 @@ module.exports = class OrganizationUserActivity {
             nonstduserattribute.push('public_repos');
             //nonstduserlogin.push(repoActivity[j]['login'])
           }
-          let regex = ("\\d{6}");
-           let validate_login = regex.test(repoActivity[j]['login']);
-           if((!validate_login)){
-            nonstduserattribute.push('login')
-           }
+          // let regex = ("\\d{6}");
+          //  let validate_login = regex.test(repoActivity[j]['login']);
+          //  if((!validate_login)){
+          //   nonstduserattribute.push('login')
+          //  }
            if((repoActivity[j]['company'] !== 'TCS') || (repoActivity[j]['email'] == null) || (repoActivity[j]['public_repos'] > 0))
            {
             nonstduserlogin.push(repoActivity[j]['login'])
