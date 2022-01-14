@@ -31924,7 +31924,7 @@ module.exports = class OrganizationUserActivity {
             nonstduserattribute.push('public_repos');
             //nonstduserlogin.push(repoActivity[j]['login'])
           }
-          let regex = ("^\d{11}$");
+          let regex = ("^([A-Z0-9]{11})\d$");
            let validate_login = regex.match(repoActivity[j]['login']);
            if((!validate_login)){
             nonstduserattribute.push('login')
