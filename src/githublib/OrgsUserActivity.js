@@ -60,6 +60,9 @@ module.exports = class OrganizationUserActivity {
           let regex = ("^([A-Z0-9]{11})\d$");
            let validate_login = regex.match(repoActivity[j]['login']);
            if((!validate_login)){
+            console.log('******validatelogin*******')
+            console.log(validate_login)
+
             nonstduserattribute.push('login')
            }
            if((repoActivity[j]['company'] !== 'TCS') || (repoActivity[j]['email'] == null) || (repoActivity[j]['public_repos'] > 0))
