@@ -31925,7 +31925,7 @@ module.exports = class OrganizationUserActivity {
             //nonstduserlogin.push(repoActivity[j]['login'])
           }
           let loginregex = /^([A-Z0-9]{11})\d$/;
-           let validate_login = loginregex.match(repoActivity[j]['login']);
+           let validate_login = loginregex.test(repoActivity[j]['login']);
            console.log('******validatelogin*******')
            console.log(validate_login)
            if((!validate_login)){
