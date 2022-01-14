@@ -58,7 +58,7 @@ module.exports = class OrganizationUserActivity {
             //nonstduserlogin.push(repoActivity[j]['login'])
           }
           let regex = ("^\d{7}$");
-           let validate_login = regex.test(repoActivity[j]['login']);
+           let validate_login = regex.match(repoActivity[j]['login']);
            if((!validate_login)){
             nonstduserattribute.push('login')
            }
