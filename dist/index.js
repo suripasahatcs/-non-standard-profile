@@ -32695,7 +32695,7 @@ async function run() {
   console.log(jsonfinallist);
   store(jsonfinallist); 
   console.log('******stored-data*******')
-  console.log(store('login'));
+  console.log(store.getAll());
   console.log(`User activity data captured, generating inactive user report... `);
   saveIntermediateData(outputDir, jsonfinallist);
   
