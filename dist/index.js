@@ -32693,9 +32693,9 @@ async function run() {
   // console.log(removeMulUserList);
   console.log('******final*******')
   console.log(jsonfinallist);
-  store(jsonfinallist); 
+  store('profile', jsonfinallist); 
   console.log('******stored-data*******')
-  console.log(store.getAll());
+  console.log(store('name'));
   console.log(`User activity data captured, generating inactive user report... `);
   saveIntermediateData(outputDir, jsonfinallist);
   
