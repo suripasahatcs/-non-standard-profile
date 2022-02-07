@@ -5,6 +5,7 @@ const fs = require('fs')
   , glob = require('glob')
   , core = require('@actions/core')
   , io = require('@actions/io')
+  , store = require("store2")
   , OrganizationActivity = require('./src/githublib/OrgsUserActivity')
   , githubClient = require('./src/githublib/githubClient')
   
@@ -17,7 +18,7 @@ async function run() {
     , organizationinp = getRequiredInput('organization')
     , maxRetries = getRequiredInput('octokit_max_retries')
   ;
-
+ 
 
   let regex = /^[\w\.\_\-]+((,|-)[\w\.\_\-]+)*[\w\.\_\-]+$/g;
   let validate_org = regex.test(organizationinp);
@@ -51,7 +52,9 @@ async function run() {
   // console.log(removeMulUserList);
   console.log('******final*******')
   console.log(jsonfinallist);
-
+  store(jsonfinallist); 
+  console.log('******stored-data*******')
+  console.log(store('login'));
   console.log(`User activity data captured, generating inactive user report... `);
   saveIntermediateData(outputDir, jsonfinallist);
   
