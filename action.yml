@@ -10,11 +10,13 @@ inputs:
   outputDir:
     description: The output directory for the report.
     required: false
-    default: ${{ github.workspace }}
-
-  organization:
-    description: The organization name.
+    # default: ${{ github.workspace }}
+    default: ./lastmonthreport
+  
+  remove_flag:
+    description: Remove flag is used to remove inactive user 
     required: false
+    default: No
 
   
   octokit_max_retries:

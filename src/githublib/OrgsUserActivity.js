@@ -8,6 +8,25 @@ module.exports = class OrganizationUserActivity {
   get organizationClient() {
     return this._organization;
   }
+  get removeUserClient(){
+    return this._removeUser;
+  }
+
+  // Delete function of users-
+  getRemoveUserFrom(org, user){
+    return this.octokit,paginate("DELETE /orgs/:org/members/:user",
+    {
+      org: org,
+      user: user
+    }
+  ).then(members => {
+    return {
+      status: 'success',
+      message: `${members} -users removed from organization`
+    }
+  })
+}
+
 
   async getUserActivity(org) {
     const self = this;
